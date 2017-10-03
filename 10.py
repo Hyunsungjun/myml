@@ -1,6 +1,6 @@
 #logistic regression (classification)
 import tensorflow as tf
-import lib.myplot as myplot
+from myplot import MyPlot
 
 x = [[-2.], [-1], [1], [2]]
 y = [[0.], [0], [1], [2]]

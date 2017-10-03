@@ -1,9 +1,9 @@
-# 1입력 1뉴런, 데이터 3개, 바이어스
+# 1입력 1뉴런, 학습데이터 1개, 바이어스
 import tensorflow as tf
-from plot import MyPlot
+from myplot import MyPlot
 
-x = [1, 2, 3]
-y = [1, 2, 3]
+x = [1]
+y = [1]
 
 #----- a neuron
 w = tf.Variable(tf.random_normal([1]))
@@ -11,7 +11,7 @@ b = tf.Variable(tf.random_normal([1]))
 hypo = w * x + b
 #-----
 
-cost = tf.reduce_mean((hypo - y) * (hypo - y))
+cost = (hypo - y) * (hypo - y)
 
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 
@@ -27,9 +27,6 @@ for i in range(1001):
         print(sess.run(w), sess.run(b), sess.run(cost))
         costs.append(sess.run(cost))
 
-p = MyPlot()
-p.show_list(costs)
-
-
-
+gildong = MyPlot()
+gildong.show_list(costs)
 

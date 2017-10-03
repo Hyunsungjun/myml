@@ -1,6 +1,6 @@
 # 1입력 1뉴런, 데이터 3개, 바이어스
 import tensorflow as tf
-from plot import MyPlot
+from myplot import MyPlot
 
 x = [[1., 1], [2, 2], [3, 3]]
 y = [[1.], [2], [3]]
@@ -8,7 +8,7 @@ y = [[1.], [2], [3]]
 #----- a neuron
 w = tf.Variable(tf.random_normal([2, 1]))
 b = tf.Variable(tf.random_normal([1]))
-hypo = tf.matmul(x, w) + b
+hypo = tf.matmul(x,  w) + b
 #-----
 
 cost = tf.reduce_mean((hypo - y) * (hypo - y))
