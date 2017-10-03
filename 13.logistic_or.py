@@ -7,8 +7,8 @@ y_data = [[0.], [0], [0], [1]]
 W = tf.Variable(tf.random_normal([2, 1]), name='weight')
 b = tf.Variable(tf.random_normal([1]), name='bias')
 hypo = tf.sigmoid(tf.matmul(x_data, W) + b)
-#------- a neuron
 
+#----- learning
 cost = -tf.reduce_mean(y_data * tf.log(hypo) + tf.subtract(1., y_data) *
     tf.log(tf.subtract(1., hypo)))
 
@@ -22,8 +22,15 @@ for step in range(10001):
     if step % 200 == 0:
         print(step, cost_val)
 
-# Accuracy report
+#----- testing(classification)
+predicted = tf.cast(hypo > 0.5, dtype=tf.float32)
+accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, y_data), dtype=tf.float32))
+
 h = sess.run(hypo)
 print("\nHypo: ", h)
 
+p = sess.run(predicted)
+print("Predicted: ", p)
 
+a = sess.run(accuracy)
+print("Accuracy(%): ", a * 100)
