@@ -1,14 +1,14 @@
 # 1입력 1뉴런, 데이터 3개, 바이어스
 import tensorflow as tf
-from plot import MyPlot
+from myplot import MyPlot
 
-x = [1, 2, 3]
-y = [1, 2, 3]
+x = [[1., 1], [2, 2], [3, 3]]
+y = [[1.], [2], [3]]
 
 #----- a neuron
-w = tf.Variable(tf.random_normal([1]))
+w = tf.Variable(tf.random_normal([2, 1]))
 b = tf.Variable(tf.random_normal([1]))
-hypo = w * x + b
+hypo = tf.matmul(x,  w) + b
 #-----
 
 cost = tf.reduce_mean((hypo - y) * (hypo - y))
@@ -20,12 +20,16 @@ sess.run(tf.global_variables_initializer())
 
 costs = []
 
-for i in range(1001):
+for i in range(2001):
     sess.run(train)
 
     if i % 50 == 0:
-        print(sess.run(w), sess.run(b), sess.run(cost))
+        print('hypo:', sess.run(hypo), '|', sess.run(w), sess.run(b), sess.run(cost))
+
         costs.append(sess.run(cost))
+
+hypo2 = tf.matmul([[4.,4]], w) + b
+print(sess.run(hypo2))
 
 p = MyPlot()
 p.show_list(costs)

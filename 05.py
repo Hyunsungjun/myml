@@ -1,5 +1,3 @@
-
-
 # 2입력 1뉴런, 여러 데이터
 
 
@@ -7,7 +5,6 @@
 
 
 # 2입력 2뉴런, 병합 층
-
 
 
 # Lab 4 Multi-variable linear regression
