@@ -4,8 +4,8 @@ x_data = [[0., 0], [0, 1], [1, 0], [1, 1]]
 y_data = [[0.], [0], [0], [1]]
 
 #------- a neuron
-W = tf.Variable(tf.random_normal([2, 1]), name='weight')
-b = tf.Variable(tf.random_normal([1]), name='bias')
+W = tf.Variable(tf.random_normal([2, 1]))
+b = tf.Variable(tf.random_normal([1]))
 hypo = tf.sigmoid(tf.matmul(x_data, W) + b)
 
 #----- learning
