@@ -9,8 +9,7 @@ b = tf.Variable(tf.random_normal([1]))
 hypo = tf.sigmoid(x_data * w + b)
 
 #----- learning
-cost = -tf.reduce_mean(y_data * tf.log(hypo) + tf.subtract(1., y_data) *
-    tf.log(tf.subtract(1., hypo)))
+cost = -tf.reduce_mean(y_data * tf.log(hypo) + tf.subtract(1., y_data) * tf.log(tf.subtract(1., hypo)))
 
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 
@@ -35,5 +34,3 @@ print("Predicted: ", p)
 
 a = sess.run(accuracy)
 print("Accuracy(%): ", a * 100)
-
-print("x=", sess.run(tf.reshape(-b/w,[])))
