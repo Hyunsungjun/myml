@@ -1,4 +1,4 @@
-# 1입력 1뉴런, 학습데이터 1개
+# (1)1-1/R/P
 import tensorflow as tf
 
 x = [1]

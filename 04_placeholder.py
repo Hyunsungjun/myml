@@ -1,4 +1,5 @@
 # 1입력 1뉴런, 학습데이터 1개, 플레이스 홀더
+# (1)1b-1/R/PH
 import tensorflow as tf
 
 x_data = [1]

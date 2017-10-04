@@ -1,4 +1,4 @@
-# 1입력 1뉴런, 학습데이터 1개, 바이어스
+# (1)1b-1/R
 import tensorflow as tf
 from myplot import MyPlot
 

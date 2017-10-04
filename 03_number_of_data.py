@@ -1,4 +1,5 @@
 # 1입력 1뉴런, 데이터 3개, 바이어스
+# (3)1b-1/R
 import tensorflow as tf
 from myplot import MyPlot
 

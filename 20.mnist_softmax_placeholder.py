@@ -1,3 +1,4 @@
+# (N) 784b-10S/C
 import tensorflow as tf
 import random
 from tensorflow.examples.tutorials.mnist import input_data
@@ -10,7 +11,7 @@ mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
 X = tf.placeholder(tf.float32, [None, 784])
 Y = tf.placeholder(tf.float32, [None, 10])
 
-#------- 784 inupts 10 neurons
+#------- 784 inupts - 10 neurons - Softmax
 W = tf.Variable(tf.random_normal([784, 10]))
 b = tf.Variable(tf.random_normal([10]))
 output = tf.matmul(X, W) + b
@@ -19,11 +20,9 @@ output = tf.matmul(X, W) + b
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=Y))
 optimizer = tf.train.AdamOptimizer(learning_rate=0.001).minimize(cost)
 
-# initialize
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
-# train my model
 batch_size = 100
 
 for epoch in range(15):
