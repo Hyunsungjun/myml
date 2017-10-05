@@ -1,4 +1,4 @@
-# (4)2b-2-2-1/C
+# (4)2b-2-2-1/C(2)
 import tensorflow as tf
 tf.set_random_seed(777)  # for reproducibility
 

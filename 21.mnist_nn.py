@@ -1,4 +1,4 @@
-# Lab 10 MNIST and NN
+# (N) 784b-256-256-10S/C(10)
 import tensorflow as tf
 import random
 # import matplotlib.pyplot as plt
