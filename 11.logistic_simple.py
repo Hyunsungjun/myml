@@ -1,4 +1,4 @@
-# (4)1b-1/C(2)
+# (4)1-1/C(2)
 import tensorflow as tf
 
 x_data = [-2., -1, 1, 2]
@@ -6,11 +6,11 @@ y_data = [0., 0, 1, 1]
 
 #------- a neuron
 w = tf.Variable(tf.random_normal([1]))
-b = tf.Variable(tf.random_normal([1]))
-hypo = tf.sigmoid(x_data * w + b)
+hypo = tf.sigmoid(x_data * w)
 
 #----- learning
-cost = -tf.reduce_mean(y_data * tf.log(hypo) + tf.subtract(1., y_data) * tf.log(tf.subtract(1., hypo)))
+cost = -tf.reduce_mean(y_data * tf.log(hypo) +
+        tf.subtract(1., y_data) * tf.log(tf.subtract(1., hypo)))
 
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 

@@ -11,6 +11,7 @@ output = tf.matmul(x_data, W) + b
 
 #----- learning
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=y_data))
+sm = tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=y_data)
 
 train = tf.train.AdamOptimizer(learning_rate=0.01).minimize(cost)
 
@@ -25,13 +26,19 @@ for step in range(10001):
 
 #----- testing(classification)
 predicted = tf.equal(tf.argmax(output, 1), tf.argmax(y_data, 1))
+predicted2 = tf.argmax(output, 1)
 accuracy = tf.reduce_mean(tf.cast(predicted, tf.float32))
 
 h = sess.run(output)
 print("\nLogits: ", h)
 
+print("sm", sess.run(sm))
+
 p = sess.run(predicted)
 print("Predicted: ", p)
+
+p2 = sess.run(predicted2)
+print("Predicted2: ", p2)
 
 a = sess.run(accuracy)
 print("Accuracy(%): ", a * 100)
