@@ -7,11 +7,10 @@ y_data = [[1,0,0,0], [0,1,0,0], [0,0,1,0], [0,0,0,1]]
 #------- 2 inputs 4 neurons
 W = tf.Variable(tf.random_normal([2, 4]))
 b = tf.Variable(tf.random_normal([4]))
-output = tf.matmul(x_data, W) + b
+output = tf.matmul(x_data, W) + b  # logit (?, 4)
 
 #----- learning
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=y_data))
-sm = tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=y_data)
 
 train = tf.train.AdamOptimizer(learning_rate=0.01).minimize(cost)
 
@@ -25,20 +24,14 @@ for step in range(10001):
         print(step, sess.run(cost))
 
 #----- testing(classification)
-predicted = tf.equal(tf.argmax(output, 1), tf.argmax(y_data, 1))
-predicted2 = tf.argmax(output, 1)
-accuracy = tf.reduce_mean(tf.cast(predicted, tf.float32))
+logit = sess.run(output) #(?, 4)
+print("\nLogits: ", logit)
 
-h = sess.run(output)
-print("\nLogits: ", h)
+hit = tf.equal(tf.argmax(output, 1), tf.argmax(y_data, 1))
+accuracy = tf.reduce_mean(tf.cast(hit, tf.float32))
 
-print("sm", sess.run(sm))
-
-p = sess.run(predicted)
-print("Predicted: ", p)
-
-p2 = sess.run(predicted2)
-print("Predicted2: ", p2)
+p = sess.run(hit)
+print("\nhit: ", p)
 
 a = sess.run(accuracy)
 print("Accuracy(%): ", a * 100)
