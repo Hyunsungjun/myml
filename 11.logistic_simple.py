@@ -21,14 +21,11 @@ for step in range(5001):
     sess.run(train)
 
     if step % 200 == 0:
-        print(step, sess.run(w), sess.run(b), sess.run(cost))
+        print(step, sess.run(w), sess.run(cost))
 
 #----- testing(classification)
 predicted = tf.cast(hypo > 0.5, dtype=tf.float32)
 accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, y_data), dtype=tf.float32))
-
-h = sess.run(hypo)
-print("\nHypo: ", h)
 
 p = sess.run(predicted)
 print("Predicted: ", p)
