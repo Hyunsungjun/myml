@@ -1,8 +1,13 @@
 # (1)1-1/R
 import tensorflow as tf
 
+<<<<<<< HEAD
 x_data = [1]
 y_data = [1]
+=======
+x = [1, 2, 3]
+y = [1, 2, 3]
+>>>>>>> 9ed657a915822d28e59af38b7d7d2956b2aa01b5
 
 #----- a neuron
 w = tf.Variable(tf.random_normal([1]))
@@ -23,5 +28,8 @@ for i in range(1001):
         print('w:', sess.run(w), 'cost:', sess.run(cost))
 
 #----- testing(prediction)
-print(sess.run(w * [5]))
+x = [5, 6, 7]
+hypo2 = w * x
+
+print(sess.run(hypo2))
 
