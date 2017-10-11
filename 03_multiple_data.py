@@ -1,18 +1,18 @@
-# 1입력 1뉴런, 데이터 3개, 바이어스
-# (3)1b-1/R
+# (3)1-1/R
 import tensorflow as tf
+
 from myplot import MyPlot
 
-x = [1, 2, 3]
-y = [1, 2, 3]
+x_data = [1, 2, 3]
+y_data = [1, 2, 3]
 
 #----- a neuron
 w = tf.Variable(tf.random_normal([1]))
 b = tf.Variable(tf.random_normal([1]))
-hypo = w * x + b
+hypo = w * x_data + b
 #-----
 
-cost = tf.reduce_mean((hypo - y) * (hypo - y))
+cost = tf.reduce_mean((hypo - y_data) ** 2)
 
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 

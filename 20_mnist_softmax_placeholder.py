@@ -1,4 +1,4 @@
-# (N) 784b-10S/C(10)
+# (N) 784-10S/C(10)
 import tensorflow as tf
 import random
 from tensorflow.examples.tutorials.mnist import input_data

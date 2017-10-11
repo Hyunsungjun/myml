@@ -1,18 +1,18 @@
-# (1)1-1/R/P
+# (1)1-1/R
 import tensorflow as tf
 
-x = [1]
-y = [1]
+x_data = [1]
+y_data = [1]
 
-x_p = tf.placeholder(tf.float32)
-y_p = tf.placeholder(tf.float32)
+X = tf.placeholder(tf.float32)
+Y = tf.placeholder(tf.float32)
 
 #----- a neuron
 w = tf.Variable(tf.random_normal([1]))
-hypo = w * x_p
+hypo = w * X
 
 #----- learning
-cost = (hypo - y_p) * (hypo - y_p)
+cost = (hypo - Y) ** 2
 
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 
@@ -20,11 +20,11 @@ sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
 for i in range(1001):
-    sess.run(train, feed_dict={x_p:x, y_p:y})
+    sess.run(train, feed_dict={X:x_data, Y:y_data})
 
     if i % 100 == 0:
-        print(sess.run(w), sess.run(cost, feed_dict={x_p:x, y_p:y}))
+        print(sess.run(w), sess.run(cost, feed_dict={X:x_data, Y:y_data}))
 
 #----- testing(prediction)
-print(sess.run(hypo, feed_dict={x_p:[5]}))
+print(sess.run(hypo, feed_dict={X:[5]}))
 

@@ -1,15 +1,15 @@
 # (1)1-1/R
 import tensorflow as tf
 
-x = [1]
-y = [1]
+x_data = [1]
+y_data = [1]
 
 #----- a neuron
 w = tf.Variable(tf.random_normal([1]))
-hypo = w * x
+hypo = w * x_data
 
 #----- learning
-cost = (hypo - y) * (hypo - y)
+cost = (hypo - y_data) ** 2
 
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 

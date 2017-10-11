@@ -1,4 +1,4 @@
-# (4)2b-1/C(2)
+# (4)2-1/C(2)
 import tensorflow as tf
 
 x_data = [[0., 0], [0, 1], [1, 0], [1, 1]]

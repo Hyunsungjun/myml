@@ -1,6 +1,6 @@
-# 1입력 1뉴런, 데이터 3개, 바이어스
-# (3)2b-1/R
+# (3)2-1/R
 import tensorflow as tf
+
 from myplot import MyPlot
 
 x = [[1., 1], [2, 2], [3, 3]]

@@ -1,17 +1,18 @@
-# (1)1b-1/R
+# (1)1-1/R
 import tensorflow as tf
+
 from myplot import MyPlot
 
-x = [1]
-y = [1]
+x_data = [1]
+y_data = [1]
 
 #----- a neuron
 w = tf.Variable(tf.random_normal([1]))
 b = tf.Variable(tf.random_normal([1]))
-hypo = w * x + b
+hypo = w * x_data + b
 #-----
 
-cost = (hypo - y) * (hypo - y)
+cost = (hypo - y_data) ** 2
 
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 
