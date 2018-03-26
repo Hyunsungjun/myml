@@ -23,8 +23,6 @@ for i in range(1001):
         print('w:', sess.run(w), 'cost:', sess.run(cost))
 
 #----- testing(prediction)
-x = [5, 6, 7]
-hypo2 = w * x
-
-print(sess.run(hypo2))
+x_data = [3]
+print(sess.run(x_data * w))
 
