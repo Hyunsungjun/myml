@@ -25,4 +25,3 @@ for i in range(1001):
 #----- testing(prediction)
 x_data = [3]
 print(sess.run(x_data * w))
-
