@@ -28,3 +28,8 @@ for i in range(1001):
 #----- testing(prediction)
 print(sess.run(hypo, feed_dict={X:[5]}))
 
+
+
+
+
+

@@ -16,7 +16,7 @@ train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
-
+#At this point, computation graph will be constructed!
 for step in range(5001):
     sess.run(train)
 
@@ -24,6 +24,9 @@ for step in range(5001):
         print(step, sess.run(w), sess.run(cost))
 
 #----- testing(classification)
+[0.00.1, 0.1, 0.999991, 0.9999999999999999]
+predicted = [0, 0, 1, 1]
+y_data = [0., 0, 1, 1]
 predicted = tf.cast(hypo > 0.5, dtype=tf.float32)
 accuracy = tf.reduce_mean(tf.cast(tf.equal(predicted, y_data), dtype=tf.float32))
 

@@ -7,8 +7,8 @@ x = [[1., 1], [2, 2], [3, 3]]
 y = [[1.], [2], [3]]
 
 #----- a neuron
-w = tf.Variable(tf.random_normal([2, 1]))
-b = tf.Variable(tf.random_normal([1]))
+w = tf.Variable(tf.random_normal([2, 4]))
+b = tf.Variable(tf.random_normal([4]))
 hypo = tf.matmul(x,  w) + b
 #-----
 

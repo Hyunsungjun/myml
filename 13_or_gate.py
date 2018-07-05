@@ -2,7 +2,7 @@
 import tensorflow as tf
 
 x_data = [[0., 0], [0, 1], [1, 0], [1, 1]]
-y_data = [[0], [0], [0], [1]]
+y_data = [[0], [1], [1], [1]]
 
 #------- a neuron
 W = tf.Variable(tf.random_normal([2, 1]))

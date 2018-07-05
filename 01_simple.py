@@ -16,6 +16,8 @@ train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
+print('w:', sess.run(w), 'cost:', sess.run(cost))
+
 for i in range(1001):
     sess.run(train)
 
@@ -24,4 +26,11 @@ for i in range(1001):
 
 #----- testing(prediction)
 x_data = [3]
-print(sess.run(x_data * w))
+print(sess.run(hypo))
+
+
+
+
+
+
+

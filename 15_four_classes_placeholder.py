@@ -13,7 +13,8 @@ b = tf.Variable(tf.random_normal([4]))
 output = tf.matmul(X, W) + b
 
 #----- learning
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output, labels=Y))
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output,
+                                                              labels=Y))
 
 train = tf.train.AdamOptimizer(learning_rate=0.01).minimize(cost)
 
