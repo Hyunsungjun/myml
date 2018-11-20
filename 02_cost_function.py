@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 x_data = [1]
 y_data = [1]
 
-#W = tf.placeholder(tf.float32)
+W = tf.placeholder(tf.float32)
 
 #----- a neuron
 w = tf.Variable(tf.random_normal([1]))
-hypo = x_data * w
+hypo = x_data * W
 
 #----- learning
 cost = (hypo - y_data) ** 2

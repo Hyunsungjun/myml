@@ -4,8 +4,8 @@ import matplotlib.pyplot as plot
 '''
 Usage:
 import myplot
-gildong = myplot.MyPlot()
-gildong.show_list(list)
+guy = myplot.MyPlot()
+guy.show_list(list)
 
 import numpy as np
 import myplot.py

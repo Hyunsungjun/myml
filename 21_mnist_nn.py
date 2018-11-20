@@ -17,8 +17,8 @@ training_epochs = 15
 batch_size = 100
 
 # None: Any number
-X = tf.placeholder(tf.float32, [None, 784])
-Y = tf.placeholder(tf.float32, [None, 10])
+X = tf.placeholder(tf.float32, [None,784])
+Y = tf.placeholder(tf.float32, [None,10])
 
 # weights & bias for nn layers
 W1 = tf.Variable(tf.random_normal([784, 256]))
@@ -43,6 +43,7 @@ sess.run(tf.global_variables_initializer())
 
 errors = []
 
+error_list = []
 # train my model
 for epoch in range(training_epochs):
     avg_cost = 0
@@ -56,6 +57,7 @@ for epoch in range(training_epochs):
 
     print('Epoch:', '%04d' % (epoch + 1), 'cost =', '{:.9f}'.format(avg_cost))
     errors.append(avg_cost)
+    error_list.append(avg_cost)
 
 print('Learning Finished!')
 
@@ -70,14 +72,15 @@ r = random.randint(0, mnist.test.num_examples - 1)
 print("Label: ", sess.run(tf.argmax(mnist.test.labels[r:r + 1], 1)))
 print("Prediction: ", sess.run(tf.argmax(logits, 1), feed_dict={X: mnist.test.images[r:r + 1]}))
 
-# plt.imshow(mnist.test.images[r:r + 1].
-#           reshape(28, 28), cmap='Greys', interpolation='nearest')
-# plt.show()
+import matplotlib.pyplot as plt
+plt.imshow(mnist.test.images[r:r + 1].
+           reshape(28, 28), cmap='Greys', interpolation='nearest')
+plt.show()
 
 import myplot
 guy = myplot.MyPlot()
-guy.set_labels('Error', 'Epoch')
-guy.show_list(errors)
+guy.set_labels('Epoch', 'Error')
+guy.show_list(error_list)
 
 '''
 Epoch: 0001 cost = 141.207671860

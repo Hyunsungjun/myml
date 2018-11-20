@@ -24,7 +24,6 @@ for step in range(5001):
         print(step, sess.run(w), sess.run(cost))
 
 #----- testing(classification)
-[0.00.1, 0.1, 0.999991, 0.9999999999999999]
 predicted = [0, 0, 1, 1]
 y_data = [0., 0, 1, 1]
 predicted = tf.cast(hypo > 0.5, dtype=tf.float32)
