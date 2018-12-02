@@ -2,7 +2,6 @@
 import tensorflow as tf
 import random
 from tensorflow.examples.tutorials.mnist import input_data
-import matplotlib.pyplot as plt
 
 tf.set_random_seed(777)  # reproducibility
 
@@ -29,6 +28,7 @@ sess.run(tf.global_variables_initializer())
 
 batch_size = 100
 
+cost_list = []
 for epoch in range(15):
     avg_cost = 0
     total_batch = int(mnist.train.num_examples / batch_size)
@@ -40,6 +40,12 @@ for epoch in range(15):
         avg_cost += c / total_batch
 
     print('Epoch:', '%04d' % (epoch + 1), 'cost =', '{:.9f}'.format(avg_cost))
+    cost_list.append(avg_cost)
+
+# Show the error
+import matplotlib.pyplot as plt
+plt.plot(cost_list)
+plt.show()
 
 # ----- testing(classification)
 predicted = tf.equal(tf.argmax(output, 1), tf.argmax(Y, 1))

@@ -17,7 +17,6 @@ batch_size = 100
 
 
 class Model:
-
     def __init__(self, sess, name):
         self.sess = sess
         self.name = name
@@ -137,6 +136,7 @@ for m in range(num_models):
 sess.run(tf.global_variables_initializer())
 
 # train my model
+error_list = []
 avg_cost_list = np.zeros(len(models)) #아래 for 루프 안에 있었는데 여기로 옮김.
 for epoch in range(training_epochs):
     total_batch = int(mnist.train.num_examples / batch_size)

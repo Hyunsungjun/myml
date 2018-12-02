@@ -58,6 +58,7 @@ sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
 # train my model
+error_list = []
 for epoch in range(training_epochs):
     avg_cost = 0
     total_batch = int(mnist.train.num_examples / batch_size)
@@ -69,8 +70,16 @@ for epoch in range(training_epochs):
         avg_cost += c / total_batch
 
     print('Epoch:', '%04d' % (epoch + 1), 'cost =', '{:.9f}'.format(avg_cost))
+    error_list.append(avg_cost)
 
 print('Learning Finished!')
+
+# Show the error
+import matplotlib.pyplot as plt
+plt.plot(error_list)
+plt.xlabel('Epoch')
+plt.ylabel('Error')
+plt.show()
 
 # Test model and check accuracy
 correct_prediction = tf.equal(tf.argmax(hypothesis, 1), tf.argmax(Y, 1))

@@ -2,16 +2,13 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 
-
 def normalize(data):
     numerator = data - np.min(data, 0)   # 모든 데이터를 0부터 시작하도록
     denominator = np.max(data, 0) - np.min(data, 0)  #최대값과 최소값 차이 구함
     # noise term prevents the zero division
     return numerator / (denominator + 1e-7)
 
-
 tf.set_random_seed(777)  # reproducibility
-
 
 timesteps = seq_length = 7
 data_dim = 5
@@ -74,12 +71,12 @@ for i in range(500):
 
 testPredict = sess.run(hypo, feed_dict={X: testX})
 print("RMSE", sess.run(rmse, feed_dict={targets: testY, predictions: testPredict}))
+
+# Check the result!
+import matplotlib.pyplot as plt
 plt.plot(testY)
 plt.plot(testPredict)
 plt.xlabel("Time Period")
 plt.ylabel("Stock Price")
 plt.show()
-
-
-
 

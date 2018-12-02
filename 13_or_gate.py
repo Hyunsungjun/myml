@@ -17,11 +17,18 @@ train = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(cost)
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
+cost_list = []
 for step in range(10001):
     sess.run(train)
 
     if step % 500 == 0:
         print(step, sess.run(cost))
+        cost_list.append(sess.run(cost))
+
+# Show the error
+import matplotlib.pyplot as plt
+plt.plot(cost_list)
+plt.show()
 
 #----- testing(classification)
 predicted = tf.cast(hypo > 0.5, dtype=tf.float32)
@@ -35,3 +42,5 @@ print("Predicted: ", p)
 
 a = sess.run(accuracy)
 print("Accuracy(%): ", a * 100)
+
+

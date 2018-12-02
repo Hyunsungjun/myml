@@ -13,19 +13,28 @@ b = tf.Variable(tf.random_normal([4]))
 output = tf.matmul(X, W) + b
 
 #----- learning
-cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=output,
-                                                              labels=Y))
+cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
+        logits=output, labels=Y))
 
 train = tf.train.AdamOptimizer(learning_rate=0.01).minimize(cost)
 
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
-for step in range(10001):
+cost_list = []
+print(sess.run(cost, feed_dict={X:x_data, Y:y_data}))
+for step in range(1001):
     sess.run(train, feed_dict={X:x_data, Y:y_data})
 
-    if step % 500 == 0:
-        print(step, sess.run(cost, feed_dict={X:x_data, Y:y_data}))
+    if step % 100 == 0:
+        cost_val = sess.run(cost, feed_dict={X:x_data, Y:y_data})
+        print(step, cost_val)
+        cost_list.append(cost_val)
+
+# Show the error
+import matplotlib.pyplot as plt
+plt.plot(cost_list)
+plt.show()
 
 #----- testing(classification)
 predicted = tf.equal(tf.argmax(output, 1), tf.argmax(Y, 1))

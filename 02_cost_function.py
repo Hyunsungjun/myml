@@ -1,6 +1,5 @@
 # (1)1-1/R
 import tensorflow as tf
-import matplotlib.pyplot as plt
 
 x_data = [1]
 y_data = [1]
@@ -28,7 +27,8 @@ for i in range(-30, 50):
     weights.append(w_val)
     costs.append(curr_cost)
 
-# Show the cost function
+# Show the error
+import matplotlib.pyplot as plt
 plt.plot(weights, costs)
 plt.show()
 

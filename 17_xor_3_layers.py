@@ -22,13 +22,19 @@ train = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(cost)
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
-errors = []
+cost_list = []
+print(sess.run(cost))
 for step in range(20001):
-    sess.run(train) #계산그래프, 데이터 4개에 대하여 forward prop. 오류값을 구하고 충분히 작지 않으면
+    sess.run(train)
 
     if step % 500 == 0:
-        #print(step, sess.run(cost))
-        errors.append(sess.run(cost))
+        print(sess.run(cost))
+        cost_list.append(sess.run(cost))
+
+# Show the error
+import matplotlib.pyplot as plt
+plt.plot(cost_list)
+plt.show()
 
 #----- testing(classification)
 predicted = tf.cast(hypo > 0.5, dtype=tf.float32)
@@ -42,8 +48,4 @@ print("Predicted: ", p)
 
 a = sess.run(accuracy)
 print("Accuracy(%): ", a * 100)
-
-from myplot import MyPlot
-p = MyPlot()
-p.show_list(errors)
 

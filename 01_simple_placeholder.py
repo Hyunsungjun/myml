@@ -12,24 +12,27 @@ w = tf.Variable(tf.random_normal([1]))
 hypo = w * X
 
 #----- learning
-cost = (hypo  -Y) ** 2
+cost = (hypo  - Y) ** 2
 
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
+cost_list = []
+print(sess.run(w), sess.run(cost, feed_dict={X:x_data, Y:y_data}))
 for i in range(1001):
     sess.run(train, feed_dict={X:x_data, Y:y_data})
 
     if i % 100 == 0:
-        print(sess.run(w), sess.run(cost, feed_dict={X:x_data, Y:y_data}))
+        cost_val = sess.run(cost, feed_dict={X:x_data, Y:y_data})
+        print(sess.run(w), cost_val)
+        cost_list.append(cost_val)
+
+# Show the error
+import matplotlib.pyplot as plt
+plt.plot(cost_list)
+plt.show()
 
 #----- testing(prediction)
-print(sess.run(hypo, feed_dict={X:[3]}))
-
-
-
-
-
-
+print(sess.run(hypo, feed_dict={X:[3, 5, 7, 8, 10]}))

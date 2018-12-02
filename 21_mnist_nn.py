@@ -41,8 +41,6 @@ optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
-errors = []
-
 error_list = []
 # train my model
 for epoch in range(training_epochs):
@@ -56,10 +54,14 @@ for epoch in range(training_epochs):
         avg_cost += c / total_batch
 
     print('Epoch:', '%04d' % (epoch + 1), 'cost =', '{:.9f}'.format(avg_cost))
-    errors.append(avg_cost)
     error_list.append(avg_cost)
 
 print('Learning Finished!')
+
+# Show the error
+import matplotlib.pyplot as plt
+plt.plot(error_list)
+plt.show()
 
 # Test model using all test images
 prediction = tf.equal(tf.argmax(logits, 1), tf.argmax(Y, 1))
@@ -77,10 +79,6 @@ plt.imshow(mnist.test.images[r:r + 1].
            reshape(28, 28), cmap='Greys', interpolation='nearest')
 plt.show()
 
-import myplot
-guy = myplot.MyPlot()
-guy.set_labels('Epoch', 'Error')
-guy.show_list(error_list)
 
 '''
 Epoch: 0001 cost = 141.207671860
