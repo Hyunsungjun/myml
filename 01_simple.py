@@ -1,8 +1,8 @@
 # (1)1-1/R
 import tensorflow as tf
 
-x_data = [1]
-y_data = [1]
+x_data = [[1]]
+y_data = [[1]]
 
 #----- a neuron
 w = tf.Variable(tf.random_normal([1]))
@@ -30,6 +30,7 @@ plt.plot(cost_list)
 plt.show()
 
 #----- testing(prediction)
-x_data = [3]
-print(sess.run(hypo))
+print(sess.run(w * [3]))
+
+
 

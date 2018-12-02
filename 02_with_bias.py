@@ -9,7 +9,7 @@ w = tf.Variable(tf.random_normal([1]))
 b = tf.Variable(tf.random_normal([1]))
 hypo = w * x_data + b
 
-#-----
+#----- learning
 cost = (hypo - y_data) ** 2
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 
