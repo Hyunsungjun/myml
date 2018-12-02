@@ -1,12 +1,11 @@
 # (1)1-1/R
 import tensorflow as tf
 
-x_data = [[1]]
-y_data = [[1]]
+x_data = [1]
+y_data = [1]
 
 #----- a neuron
 w = tf.Variable(tf.random_normal([1]))
-
 hypo = w * x_data  # (w)(1)
 
 #----- learning
@@ -27,10 +26,8 @@ for i in range(1001) :
 # Show the error
 import matplotlib.pyplot as plt
 plt.plot(cost_list)
-plt.show()
+plt.show();
 
 #----- testing(prediction)
 print(sess.run(w * [3]))
-
-
 
