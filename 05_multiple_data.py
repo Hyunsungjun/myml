@@ -1,16 +1,20 @@
-# (1)1-1/R
+# (3)1-1/R
 import tensorflow as tf
 
-x_data = [1]
-y_data = [1]
+x_data = [1, 2, 3]
+y_data = [1, 2, 3]
 
 #----- a neuron
 w = tf.Variable(tf.random_normal([1]))
 b = tf.Variable(tf.random_normal([1]))
-hypo = w * x_data + b
+hypo = x_data*w
+# 1*w       1
+# 2*w       2   (w)
+# 3*2       3
 
 #----- learning
-cost = (hypo - y_data) ** 2
+cost = tf.reduce_mean((hypo - y_data) ** 2)
+
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 
 sess = tf.Session()
@@ -29,4 +33,9 @@ for i in range(1001):
 import matplotlib.pyplot as plt
 plt.plot(cost_list)
 plt.show();
+
+#----- testing(prediction)
+print(hypo) #shape=(3,)
+print(sess.run(hypo))
+
 

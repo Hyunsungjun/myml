@@ -4,11 +4,11 @@ import tensorflow as tf
 x_data = [1]
 y_data = [1]
 
-#----- a neuron
+#----- 신경세포
 w = tf.Variable(tf.random_normal([1]))
 hypo = w * x_data  # (w)(1)
 
-#----- learning
+#----- 신경세포 학습시키기
 cost = (hypo - y_data) ** 2
 train = tf.train.GradientDescentOptimizer(learning_rate=0.01).minimize(cost)
 
@@ -20,14 +20,14 @@ print('w:', sess.run(w), 'cost:', sess.run(cost))
 for i in range(1001) :
     sess.run(train)
     if i % 100 == 0:
-        print('w:', sess.run(w), 'cost:', sess.run(cost))
-        cost_list.append(sess.run(cost))
+        err_val = sess.run(cost)
+        print('w:', sess.run(w), 'cost:', err_val)
+        cost_list.append(err_val)
 
-# Show the error
+# 에러가 줄어드는 모습 보기
 import matplotlib.pyplot as plt
 plt.plot(cost_list)
 plt.show();
 
-#----- testing(prediction)
+#----- 테스트, 예측
 print(sess.run(w * [3]))
-
